@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -62,11 +63,17 @@ public class PlayerController : MonoBehaviour
         {
             health--;
             Debug.Log($"Health: {health}");
+            if (health == 0)
+            {
+                SceneManager.LoadScene("maze");
+            }
         }
 
         if (other.CompareTag("Goal"))
         {
-            Debug.Log("A winner is you!");
+            Debug.Log("You win!");
+            SceneManager.LoadScene("maze");
+            
         }
 
     }
