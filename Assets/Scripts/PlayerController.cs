@@ -5,9 +5,11 @@ public class PlayerController : MonoBehaviour
     //================================================================================
     // Public Variables ==============================================================
     //================================================================================
-    private Rigidbody rb_player;
+    public int health = 5;
     public float speed = 1000f;
+    
     private int score = 0;
+    private Rigidbody rb_player;
 
     //================================================================================
     // Start is called before the first frame update =================================
@@ -54,6 +56,12 @@ public class PlayerController : MonoBehaviour
             score++;
             Debug.Log($"Score: {score}");
             Destroy(other.gameObject);
+        }
+
+        if (other.CompareTag("Trap"))
+        {
+            health--;
+            Debug.Log($"Health: {health}");
         }
 
     }
