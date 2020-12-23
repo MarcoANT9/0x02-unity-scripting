@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
     //================================================================================
     private Rigidbody rb_player;
     public float speed = 1000f;
+    private int score = 0;
 
     //================================================================================
     // Start is called before the first frame update =================================
@@ -40,5 +41,20 @@ public class PlayerController : MonoBehaviour
         {
             rb_player.AddForce(speed * Time.deltaTime, 0, 0);
         }
+    }
+
+    //================================================================================
+    // Other Functions ===============================================
+    //================================================================================     
+    // Collision detection
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Pickup"))
+        {
+            score++;
+            Debug.Log($"Score: {score}");
+            Destroy(other.gameObject);
+        }
+
     }
 }
